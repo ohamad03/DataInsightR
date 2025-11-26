@@ -123,4 +123,8 @@ If you use this package in your research, please cite:
 ```
 Hamad, O. (2025). DataInsightR: Advanced Data Science Toolkit for Intelligent Analysis.
 R package version 1.0.0. https://github.com/ohamad03/DataInsightR
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 0aa83dfc76363ab0c1f1e2ebff16a15d9f9003c8
