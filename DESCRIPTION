@@ -1,0 +1,46 @@
+Package: DataInsightR
+Type: Package
+Title: Advanced Data Science Toolkit for Intelligent Analysis and Automated Insights
+Version: 1.0.0
+Date: 2024-12-05
+Authors@R: c(
+    person("Omar", "Hamad", email = "ohamad@usf.edu", 
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1234-5678"))
+    )
+Maintainer: Omar Hamad <ohamad@usf.edu>
+Description: DataInsightR provides a comprehensive suite of advanced tools for 
+    intelligent data analysis and automated insight generation. The package includes
+    functions for smart data profiling, multi-method outlier detection, missing value
+    analysis and imputation, automated visualization, correlation analysis with 
+    significance testing, distribution fitting, automated feature engineering, and
+    comprehensive data quality reporting. It implements both S3 and S4 object-oriented
+    programming paradigms for flexible and efficient data handling. Designed for data
+    scientists, statisticians, and researchers who need powerful automated tools to
+    extract meaningful insights from complex datasets before modeling and analysis.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 4.0.0)
+Imports:
+    ggplot2 (>= 3.3.0),
+    dplyr (>= 1.0.0),
+    tidyr (>= 1.1.0),
+    methods,
+    stats,
+    graphics,
+    grDevices,
+    utils
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    covr
+VignetteBuilder: knitr
+RoxygenNote: 7.2.3
+URL: https://github.com/ohamad03/DataInsightR
+BugReports: https://github.com/ohamad03/DataInsightR/issues
+Roxygen: list(markdown = TRUE)
+Language: en-US
+NeedsCompilation: no

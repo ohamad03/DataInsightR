@@ -1,0 +1,170 @@
+---
+title: "Getting Started with DataInsightR"
+author: "Omar Hamad"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with DataInsightR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+DataInsightR is an R package designed to make exploratory data analysis easier and more automated. This vignette shows you how to use the main functions.
+
+## Installation
+```{r eval=FALSE}
+# Install from GitHub
+devtools::install_github("ohamad03/DataInsightR")
+```
+
+## Loading the Package
+```{r eval=FALSE}
+library(DataInsightR)
+```
+
+## Basic Usage
+
+### 1. Smart Data Summary
+
+The `smart_summary()` function gives you a complete overview of your dataset.
+```{r eval=FALSE}
+# Using the mtcars dataset
+data(mtcars)
+
+# Get comprehensive summary
+summary_result = smart_summary(mtcars)
+print(summary_result)
+```
+
+This function automatically:
+- Detects numeric and categorical variables
+- Calculates descriptive statistics
+- Reports missing values
+- Provides data quality insights
+
+### 2. Detecting Outliers
+
+Find unusual values in your data using multiple methods:
+```{r eval=FALSE}
+# Detect outliers using both IQR and Z-score methods
+outliers = detect_outliers(mtcars, method = "both")
+print(outliers)
+
+# Use only IQR method
+outliers_iqr = detect_outliers(mtcars, method = "iqr")
+```
+
+### 3. Missing Data Analysis
+
+Analyze patterns in missing data:
+```{r eval=FALSE}
+# Using airquality dataset which has missing values
+data(airquality)
+
+missing_report = missing_analyzer(airquality)
+print(missing_report)
+```
+
+### 4. Correlation Analysis
+
+Find relationships between variables:
+```{r eval=FALSE}
+# Analyze correlations
+corr_result = correlation_matrix(mtcars, method = "pearson")
+print(corr_result)
+
+# Set minimum correlation threshold
+corr_result = correlation_matrix(mtcars, min_correlation = 0.5)
+```
+
+### 5. Automatic Plotting
+
+Let the package choose the right plot for your data:
+```{r eval=FALSE}
+# Single variable plot (histogram for numeric)
+plot1 = auto_plot(mtcars, "mpg")
+print(plot1)
+
+# Two variable plot (scatter for numeric vs numeric)
+plot2 = auto_plot(mtcars, "hp", "mpg")
+print(plot2)
+
+# Categorical vs numeric (boxplot)
+plot3 = auto_plot(mtcars, "cyl", "mpg")
+print(plot3)
+```
+
+### 6. Feature Engineering
+
+Create new features automatically:
+```{r eval=FALSE}
+# Create polynomial and interaction features
+new_data = feature_engineer(mtcars, interactions = TRUE, polynomials = TRUE)
+
+# Check how many new features were created
+cat("Original features:", attr(new_data, "original_features"), "\n")
+cat("New features:", attr(new_data, "new_features"), "\n")
+```
+
+### 7. Data Quality Assessment (S4 Class)
+
+Use the S4 class for comprehensive quality scoring:
+```{r eval=FALSE}
+# Assess data quality
+quality = assess_data_quality(iris)
+show(quality)
+
+# Get the quality score
+score = getScore(quality)
+cat("Quality Score:", score, "\n")
+```
+
+### 8. Distribution Fitting
+
+Test which statistical distributions fit your data:
+```{r eval=FALSE}
+# Test if data follows normal, uniform, or exponential distribution
+dist_result = distribution_fit(mtcars$mpg)
+print(dist_result)
+```
+
+## Complete Workflow Example
+
+Here's a typical workflow combining multiple functions:
+```{r eval=FALSE}
+# Load data
+data(mtcars)
+
+# Step 1: Get overview
+summary = smart_summary(mtcars)
+
+# Step 2: Check quality
+quality = assess_data_quality(mtcars)
+cat("Quality score:", getScore(quality), "\n")
+
+# Step 3: Look for outliers
+outliers = detect_outliers(mtcars)
+
+# Step 4: Analyze relationships
+correlations = correlation_matrix(mtcars, min_correlation = 0.6)
+
+# Step 5: Visualize key relationships
+plot = auto_plot(mtcars, "wt", "mpg")
+print(plot)
+```
+
+## Tips and Best Practices
+
+1. Always start with `smart_summary()` to understand your data
+2. Check data quality before analysis using `assess_data_quality()`
+3. Use `detect_outliers()` to find unusual values that might need investigation
+4. The `auto_plot()` function saves time by choosing appropriate visualizations
+5. Use `feature_engineer()` before machine learning to create useful predictors
+
+## Summary
+
+DataInsightR provides a comprehensive toolkit for exploratory data analysis. The package implements both S3 and S4 object-oriented programming, includes defensive programming checks, and automates many common data analysis tasks.
+
+For more information, visit the GitHub repository: https://github.com/ohamad03/DataInsightR
